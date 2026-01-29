@@ -1,6 +1,9 @@
-from masks import get_mask_account, get_mask_card_number
 # Импортируем функции из модуля masks
 import re
+
+from masks import get_mask_account, get_mask_card_number
+
+
 def mask_account_card(num_card_account: str) -> str:
     """Функция принимает название карты и номер или счёт и номер
     отделяем цыфры и импортируем для маскировки."""
@@ -11,17 +14,19 @@ def mask_account_card(num_card_account: str) -> str:
         if i.isalpha():
             card.append(i)
             if len(number) == 16:
-                numbers = get_mask_card_number(number)
+                result = get_mask_card_number(number)
             elif len(number) == 20:
-                numbers = get_mask_account(number)
-    return f" {" ".join(card)} {numbers}"
+                result = get_mask_account(number)
+    return f" {" ".join(card)} {result}"
 
 
 def get_date(data: str) -> str:
-    """Принимает на вход строку с датой в смешанном формате, и возвращаем 'ДД.ММ.ГГГГ' """
+    """Принимает на вход строку с датой в смешанном формате, и возвращаем 'ДД.ММ.ГГГГ'"""
     data_new = data.split()
     formated_date = re.sub(r"(\d{4})-(\d{2})-(\d{2})", r"\3.\2.\1", data_new[0])
     return formated_date[:10]
+
+
 print(get_date("2024-03-11T02:26:18.671407"))
 
 if __name__ == "__main__":
