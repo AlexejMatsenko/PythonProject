@@ -16,11 +16,11 @@ def filter_by_state(by_states: List[Dict[str, Any]], state: str = "EXECUTED") ->
     return list_state_executed or list_state_other
 
 
-def sort_by_date(list_dates: List[Dict[str, Any]], dates: bool = True) -> List[Dict[str, Any]]:
+def sort_by_date(operation: List[Dict[str, Any]], descending: bool = True) -> List[Dict[str, Any]]:
     """Функция принимает список словарей и необязательный параметр, задающий порядок сортировки
     (по умолчанию — убывание), и возвращает новый список, отсортированный по дате"""
 
-    sorted_dates = sorted(list_dates, key=lambda date: date["date"], reverse=dates)
+    sorted_dates = sorted(operation, key=lambda x: x["date"], reverse=descending)
     return sorted_dates
 
 
