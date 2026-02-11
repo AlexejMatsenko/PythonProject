@@ -17,7 +17,7 @@ def mask_account_card(num_card_account: str) -> str:
                 result = get_mask_card_number(number)
             elif len(number) == 20:
                 result = get_mask_account(number)
-    return f" {" ".join(card)} {result}"
+    return f"{" ".join(card)} {result}"
 
 
 def get_date(data: str) -> str:
@@ -27,9 +27,9 @@ def get_date(data: str) -> str:
     return formated_date[:10]
 
 
-print(get_date("2024-03-11T02:26:18.671407"))
 
 if __name__ == "__main__":
+    print(get_date("2024-03-11T02:26:18.671407"))
     print(mask_account_card("Visa Platinum 7000792289606361"))
     print(mask_account_card("Maestro 7000792289606361"))
     print(mask_account_card("Счет 73654108430135874305"))
