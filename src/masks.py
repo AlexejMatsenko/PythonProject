@@ -1,7 +1,13 @@
 def get_mask_card_number(card_number: str) -> str:
     """Функция принимает на вход номер карты в виде числа и возвращает маску номера."""
     list_card_number = []
+
     for i in str(card_number):
+
+        if i.isalpha():
+            raise ValueError("Номер должен состоять из цифр")
+        if len(card_number) > 16 or len(card_number) < 16:
+            raise ValueError("Количество цифр карты должно быть 16")
         list_card_number.append(i)
         if len(list_card_number) == 4:
             list_card_number.append(" ")
@@ -14,16 +20,20 @@ def get_mask_card_number(card_number: str) -> str:
     return "".join(list_card_number)
 
 
-pass
 
-
-def get_mask_account(account_number: int | str) -> str:
+def get_mask_account(account_number: str) -> str:
     """Функция принимает на вход номер счета в виде числа и возвращает маску номера."""
-    list_account_number = []
+    new_account_number = []
     for i in str(account_number):
-        list_account_number.append(i)
-    list_account_number[-6:-4] = ["*", "*"]
-    return "".join(list_account_number[-6:])
+        if i.isalpha():
+            raise ValueError("Номер должен состоять из цыфр")
+        if len(account_number) > 20 or len(account_number) < 20:
+            raise ValueError("Количество цыфр карты должно быть 20")
+        new_account_number.append(i)
+    new_account_number[-6:-4] = ["*", "*"]
+    return "".join(new_account_number[-6:])
 
 
-pass
+# if __name__ == "__main__":
+#     print(get_mask_card_number("7000792289606361"))
+#     print(get_mask_card_number("1234792289605554"))
