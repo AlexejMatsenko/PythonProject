@@ -1,19 +1,20 @@
 import re
+from typing import Any
 
 # Импортируем функции из модуля masks
 from src.masks import get_mask_account, get_mask_card_number
 
 
-def mask_account_card(num_card_account: str) -> str:
+def mask_account_card(num_card_account: Any):
     """Функция принимает название карты и номер или счёт и номер,
     отделяем цифры и импортируем для маскировки."""
 
     num_card_account_split = num_card_account.split()
-    number = ""
+    number = []
     letter_card = []
     mask_number = []
-    number_account = []
-    number_card = []
+    number_account: Any = []
+    number_card: Any = []
 
     if num_card_account == "":
         raise ValueError(
@@ -37,7 +38,7 @@ def mask_account_card(num_card_account: str) -> str:
     return f"{" ".join(letter_card)} {mask_number}"
 
 
-def get_date(data: str) -> str:
+def get_date(data: str) -> Any:
     """Принимает на вход строку с датой в смешанном формате, и возвращаем 'ДД.ММ.ГГГГ'"""
     data_new = data.split()
     if not re.match(r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{6}", data):
@@ -47,10 +48,6 @@ def get_date(data: str) -> str:
 
     return formated_date[:10]
 
-
 #
-if __name__ == "__main__":
-    print(get_date("2024-03-11T02:26:18.671407"))
-#     print(mask_account_card("Счет 73654108430135874301"))
-#     print(mask_account_card("Visa Platinum 700079228960636п"))
-#     print(mask_account_card("Maestro 700079ggg9606361"))
+# if __name__ == "__main__":
+#     print(mask_account_card("Master Card 7000792289606361"))

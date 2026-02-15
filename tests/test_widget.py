@@ -1,12 +1,15 @@
 import pytest
-from src.widget import mask_account_card, get_date
+
+from src.widget import get_date, mask_account_card
 
 
+# Тестируем функцию mask_account_card
 @pytest.mark.parametrize(
     "num_card_account, expected",
     [
         ("Master Card 7000792289606361", "Master Card 7000 79** **** 6361"),
         ("Visa 7000792289606361", "Visa 7000 79** **** 6361"),
+        ("Счет 73654108430135874301", "Счет **4301"),
     ],
 )
 def test_mask_account_card(num_card_account, expected):
@@ -23,6 +26,7 @@ def test_mask_account_card_number_len():
         mask_account_card("")
 
 
+# Тестируем функцию get_date
 # Параметризация теста для get_date
 @pytest.mark.parametrize(
     "data, expected",
