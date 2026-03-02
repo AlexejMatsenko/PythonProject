@@ -81,16 +81,17 @@ def filter_by_currency(transaction_dict, currency_code="USD"):
 
 
 usd_transactions = filter_by_currency(transactions, "USD")
-# if __name__ == "__main__":
-    # for _ in range(2):
-    #     print(next(usd_transactions))
+
+for _ in range(2):
+    print(next(usd_transactions))
 pass
 
-def transaction_descriptions(transactions):
+def transaction_descriptions(transactions_descript):
+    if not isinstance(transactions_descript, list):
+        raise TypeError("Фильтрация возможна только по списку словарей!")
     for transaction in transactions:
         yield transaction.get("description")
 descriptions = transaction_descriptions(transactions)
 
-if __name__ == "__main__":
-    for _ in range(5):
-        print(next(descriptions))
+for _ in range(5):
+    print(next(descriptions))
