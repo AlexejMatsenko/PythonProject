@@ -1,3 +1,4 @@
+
 transactions = [
     {
         "id": 939719570,
@@ -62,7 +63,7 @@ transactions = [
 ]
 
 
-def filter_by_currency(transaction_dict, currency_code="USD"):
+def filter_by_currency(transaction_dict, currency_code: str = "USD"):
     """Функция принимает на вход список словарей, представляющих транзакции и
     возвращает итератор, который поочередно выдает транзакции,
     где валюта операции соответствует заданной"""
@@ -70,9 +71,7 @@ def filter_by_currency(transaction_dict, currency_code="USD"):
     if not isinstance(transaction_dict, list):
         raise TypeError("Фильтрация возможна только по списку словарей!")
     for transaction in transaction_dict:
-        transactions_currency_code = (
-            transaction.get("operationAmount").get("currency").get("code", "Error")
-        )
+        transactions_currency_code = transaction.get("operationAmount").get("currency").get("code", "Error")
         if transactions_currency_code == "":
             raise ValueError("В списке словарей нет кода валют!")
 
@@ -86,12 +85,26 @@ for _ in range(2):
     print(next(usd_transactions))
 pass
 
+
 def transaction_descriptions(transactions_descript):
     if not isinstance(transactions_descript, list):
         raise TypeError("Фильтрация возможна только по списку словарей!")
     for transaction in transactions:
         yield transaction.get("description")
+
+
 descriptions = transaction_descriptions(transactions)
 
 for _ in range(5):
     print(next(descriptions))
+
+
+def card_number_generator(start, end):
+    for number in range(int(start), int(end) + 1):
+        card_number_generators = str(number).zfill(16)  # заполняем нулями до 16 цифр
+        formated_card_number = f"{card_number_generators[:4]} {card_number_generators[4:8]} {card_number_generators[8:12]} {card_number_generators[12:]}"
+        yield formated_card_number
+
+
+for card_number in card_number_generator(1, 5):
+    print(card_number)
