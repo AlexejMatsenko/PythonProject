@@ -5,7 +5,7 @@ from typing import Any
 from src.masks import get_mask_account, get_mask_card_number
 
 
-def mask_account_card(num_card_account: Any):
+def mask_account_card(num_card_account: Any) -> Any:
     """Функция принимает название карты и номер или счёт и номер,
     отделяем цифры и импортируем для маскировки."""
 
@@ -17,9 +17,7 @@ def mask_account_card(num_card_account: Any):
     number_card: Any = []
 
     if num_card_account == "":
-        raise ValueError(
-            "Небходимо ввести название карты или счёта,и соответствующий номер"
-        )
+        raise ValueError("Небходимо ввести название карты или счёта,и соответствующий номер")
 
     for i in num_card_account_split:
         if i.isalpha():
@@ -47,6 +45,7 @@ def get_date(data: str) -> Any:
     formated_date = re.sub(r"(\d{4})-(\d{2})-(\d{2})", r"\3.\2.\1", data_new[0])
 
     return formated_date[:10]
+
 
 #
 # if __name__ == "__main__":
