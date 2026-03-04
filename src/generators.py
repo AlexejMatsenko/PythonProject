@@ -86,7 +86,7 @@ for _ in range(2):
     print(next(usd_transactions))
 
 
-def transaction_descriptions(transactions_descript:List[Dict]) -> Any:
+def transaction_descriptions(transactions_descript: List[Dict]) -> Any:
     """Функция принимает список словарей с транзакциями и возвращает описание каждой операции по очереди."""
     if not isinstance(transactions_descript, list):
         raise TypeError("Фильтрация возможна только по списку словарей!")
