@@ -1,3 +1,4 @@
+from typing import List, Dict, Any
 
 transactions = [
     {
@@ -63,7 +64,7 @@ transactions = [
 ]
 
 
-def filter_by_currency(transaction_dict, currency_code: str = "USD"):
+def filter_by_currency(transaction_dict: list, currency_code: str = "USD") -> Any:
     """Функция принимает на вход список словарей, представляющих транзакции и
     возвращает итератор, который поочередно выдает транзакции,
     где валюта операции соответствует заданной"""
@@ -83,10 +84,10 @@ usd_transactions = filter_by_currency(transactions, "USD")
 
 for _ in range(2):
     print(next(usd_transactions))
-pass
 
 
-def transaction_descriptions(transactions_descript):
+def transaction_descriptions(transactions_descript:List[Dict]) -> Any:
+    """Функция принимает список словарей с транзакциями и возвращает описание каждой операции по очереди."""
     if not isinstance(transactions_descript, list):
         raise TypeError("Фильтрация возможна только по списку словарей!")
     for transaction in transactions:
@@ -99,10 +100,14 @@ for _ in range(5):
     print(next(descriptions))
 
 
-def card_number_generator(start, end):
-    for number in range(int(start), int(end) + 1):
+def card_number_generator(start: int, stop: int) -> Any:
+    """Функция выдает номера банковских карт в формате XXXX XXXX XXXX XXXX,где X — цифра номера карты."""
+    for number in range(int(start), int(stop) + 1):
         card_number_generators = str(number).zfill(16)  # заполняем нулями до 16 цифр
-        formated_card_number = f"{card_number_generators[:4]} {card_number_generators[4:8]} {card_number_generators[8:12]} {card_number_generators[12:]}"
+        formated_card_number = (
+            f"{card_number_generators[:4]} {card_number_generators[4:8]} "
+            f"{card_number_generators[8:12]} {card_number_generators[12:]}"
+        )
         yield formated_card_number
 
 
