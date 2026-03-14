@@ -4,7 +4,7 @@ from typing import Any, Callable, Optional
 
 def log(filename: Optional[str] = None) -> Callable[[Callable[..., Any]], Callable[..., Any]]:
     """Декоратор автоматически регистрирует детали выполнения функций, имя функции, передаваемые аргументы,
-     результат выполнения и информация об ошибках."""
+    результат выполнения и информация об ошибках."""
 
     def decorator(func: Callable[..., Any]) -> Callable[..., Any]:
         @functools.wraps(func)
