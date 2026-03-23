@@ -1,15 +1,14 @@
 import json
 
 
-def get_transactions_from_json(file_path):
+def get_transactions_from_json(file_path: str) -> list:
     """
     Функция принимает на вход путь до JSON-файла и возвращает
     список словарей с данными о финансовых транзакциях.
     """
 
-
     try:
-        with open(file_path, 'r', encoding='utf-8') as f:
+        with open(file_path, "r", encoding="utf-8") as f:
             transactions = json.load(f)  # Десериализация JSON-данных в Python-объект
 
             if not isinstance(transactions, list):
@@ -21,6 +20,7 @@ def get_transactions_from_json(file_path):
         return []
     except json.JSONDecodeError:
         print(f"Ошибка: Файл '{file_path}' пустой.")
-        return []
+    return []
 
-# print(get_transactions_from_json())
+
+# get_transactions_from_json("../data/operations.json")
