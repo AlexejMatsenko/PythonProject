@@ -21,6 +21,3 @@ def get_transactions_from_json(file_path: str) -> list:
     except json.JSONDecodeError:
         print(f"Ошибка: Файл '{file_path}' пустой.")
     return []
-
-
-# get_transactions_from_json("../data/operations.json")
