@@ -1,9 +1,12 @@
 from unittest.mock import Mock, patch
-from src.external_api import sum_amount_currency_code
+
 import requests
 
+from src.external_api import sum_amount_currency_code
+
+
 @patch("src.external_api.requests.get")
-def test_amount_rub_convert(mock_get) -> None:
+def test_amount_rub_convert(mock_get):
     mock_response = Mock()
     mock_response.json.return_value = {"result": 93.5}
     mock_get.return_value = mock_response
@@ -16,8 +19,9 @@ def test_amount_rub_convert(mock_get) -> None:
     # Проверка результата
     assert result == 93.5
 
+
 @patch("src.external_api.requests.get")
-def test_amount_rub(mock_get) -> None:
+def test_amount_rub(mock_get):
     mock_response = Mock()
     mock_response.json.return_value = {"result": 100.0}
     mock_get.return_value = mock_response
@@ -30,6 +34,7 @@ def test_amount_rub(mock_get) -> None:
     # Проверка результата
     assert result == 100.0
 
+
 # Тест на ошибку HTTP
 @patch("src.external_api.requests.get")
 def test_amount_rub_convert_status(mock_get):
@@ -40,7 +45,7 @@ def test_amount_rub_convert_status(mock_get):
 
     # Проверка, что функция возвращает None
     result = sum_amount_currency_code(transaction)
-    assert result == None
+    assert result is None
 
     # Убедиться, что raise_for_status был вызван
     mock_get.return_value.raise_for_status.assert_called_once()
@@ -54,7 +59,7 @@ def test_request_exception(mock_get):
     result = sum_amount_currency_code([{"operationAmount": {"currency": {"code": "USD"}, "amount": "100"}}])
 
     # Проверяем, что функция возвращает None в случае исключения
-    assert result == None
+    assert result is None
 
 
 @patch("src.external_api.requests.get")
