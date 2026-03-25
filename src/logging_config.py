@@ -2,6 +2,7 @@ import logging
 
 
 def setup_logging(module_name: str) -> logging.Logger:
+    """Функция реализует логирование в отдельные файлы"""
     logger = logging.getLogger(module_name)
     logger.setLevel(logging.DEBUG)
     file_handler = logging.FileHandler(f"../logs/{module_name}.log", mode="w", encoding="utf-8")
