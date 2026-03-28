@@ -51,6 +51,6 @@ def get_mask_account(account_number: Any) -> Any:
     return "".join(new_account_number[-6:])
 
 
-if __name__ == "__main__":
-    print(get_mask_card_number("1234567891236540"))
-    print(get_mask_account("55565269854857231955"))
+# if __name__ == "__main__":
+#     print(get_mask_card_number("1234567891236540"))
+#     print(get_mask_account("55565269854857231955"))
