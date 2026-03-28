@@ -1,10 +1,9 @@
-import pytest
-
-import pandas as pd
-
 from unittest.mock import patch
 
-from src.pd_config import read_csv_file, read_excel_file
+import pandas as pd
+import pytest
+
+from src.reading_files import read_csv_file, read_excel_file
 
 
 @patch("pandas.read_csv")
@@ -51,7 +50,7 @@ def test_read_json_file_not_found(mock_open) -> None:
     assert result == []
 
 
-@patch("src.pd_config.pd.read_excel")
+@patch("src.reading_files.pd.read_excel")
 def test_pd_config_excel(mock_read_excel):
     # Создаем пример данных, которые будет возвращать мок
     mock_df = pd.DataFrame(
@@ -76,7 +75,7 @@ def test_pd_config_excel(mock_read_excel):
     assert result == expected_result
 
 
-@patch("src.pd_config.pd.read_excel")
+@patch("src.reading_files.pd.read_excel")
 def test_read_excel_file_raises_value_error(mock_read_excel) -> None:
     mock_read_excel.side_effect = ValueError("Ошибка при чтении файла Excel")
     with pytest.raises(ValueError, match="Ошибка при чтении файла Excel"):
