@@ -26,6 +26,6 @@ def read_excel_file(file_excel: str) -> list[dict]:
     return dict_list
 
 
-# if __name__ == '__main__':
-# print(read_csv_file("../data/transactions.csv"))
+if __name__ == "__main__":
+    print(read_csv_file("../data/transactions.csv"))
 # print(read_excel_file("../data/transactions_excel.xlsx"))
