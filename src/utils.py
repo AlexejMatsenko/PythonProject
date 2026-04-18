@@ -1,11 +1,13 @@
 import json
 
+import pandas as pd
+
 from src.logging_config import setup_logging
 
 logger = setup_logging("utils")
 
 
-def get_transactions_from_json(file_path: str) -> list:
+def get_transactions_from_json(file_path: str) -> list[dict[str, str]]:
     """
     Функция принимает на вход путь до JSON-файла и возвращает
     список словарей с данными о финансовых транзакциях.
@@ -28,10 +30,8 @@ def get_transactions_from_json(file_path: str) -> list:
         print(f"Ошибка: Файл '{file_path}' пустой.")
     return []
 
-import pandas as pd
 
-
-def read_csv_file(file_csv_path: str) -> list[dict]:
+def read_csv_file(file_csv_path: str) -> list[dict[str, str]]:
     """Функция принимает путь к файлу csv, и возвращает список словарей"""
     try:
         df = pd.read_csv(file_csv_path, encoding="utf-8-sig", delimiter=";")
@@ -42,7 +42,7 @@ def read_csv_file(file_csv_path: str) -> list[dict]:
     return dict_list
 
 
-def read_excel_file(file_excel: str) -> list[dict]:
+def read_excel_file(file_excel: str) -> list[dict[str, str]]:
     """Функция принимает путь к файлу excel, и возвращает список словарей"""
     try:
         df_excel = pd.read_excel(file_excel)
@@ -59,4 +59,4 @@ def read_excel_file(file_excel: str) -> list[dict]:
 if __name__ == "__main__":
     print(read_csv_file("../data/transactions.csv"))
 # print(read_excel_file("../data/transactions_excel.xlsx"))
-    print(get_transactions_from_json("../data/operations.json"))
+# print(get_transactions_from_json("../data/operations.json"))

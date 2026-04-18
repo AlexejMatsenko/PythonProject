@@ -1,48 +1,48 @@
-from src.generators import filter_by_currency
-from src.bank_operations import process_bank_operations, process_bank_search
-from src.processing import filter_by_state, sort_by_date
-from src.widget import get_date, mask_account_card
-from src.utils import get_transactions_from_json, read_csv_file, read_excel_file
-
 import re
+
+from src.bank_operations import process_bank_search
+from src.processing import filter_by_state
+from src.utils import get_transactions_from_json, read_csv_file, read_excel_file
+from src.widget import mask_account_card
+
 # Приветствуем пользователя и предлагаем выбор файлов для дальнейшей работы.
 print(
-    f"Привет! Добро пожаловать в программу работы с банковскими транзакциями.\n"
-    f"Выберите необходимый пункт меню:\n"
-    f"1. Получить информацию о транзакциях из JSON-файла\n"
-    f"2. Получить информацию о транзакциях из CSV-файла\n"
-    f"3. Получить информацию о транзакциях из XLSX-файла\n"
+    "Привет! Добро пожаловать в программу работы с банковскими транзакциями.\n"
+    "Выберите необходимый пункт меню:\n"
+    "1. Получить информацию о транзакциях из JSON-файла\n"
+    "2. Получить информацию о транзакциях из CSV-файла\n"
+    "3. Получить информацию о транзакциях из XLSX-файла\n"
 )
 
 
 def main():
-# Запрашиваем у пользователя номер файла.
+    # Запрашиваем у пользователя номер файла.
     while True:
 
-        number_file = input(f"Введите соответствующую цыфру: \n").strip()
+        number_file = input("Введите соответствующую цыфру: \n").strip()
 
         if number_file == "1":
-            print(f"Для обработки выбран JSON-файл.\n")
+            print("Для обработки выбран JSON-файл.\n")
             file_patches = get_transactions_from_json("../data/operations.json")
 
             break
         elif number_file == "2":
-            print(f"Для обработки выбран CSV-файл.\n")
+            print("Для обработки выбран CSV-файл.\n")
             file_patches = read_csv_file("../data/transactions.csv")
             break
         elif number_file == "3":
-            print(f"Для обработки выбран XLSX-файл.\n")
+            print("Для обработки выбран XLSX-файл.\n")
             file_patches = read_excel_file("../data/transactions_excel.xlsx")
             break
         else:
             print("Неоходимо ввести 1, 2 или 3")
             continue
-# Запрос у пользователя статуса для фильтрации
+    # Запрос у пользователя статуса для фильтрации
     while True:
         status = ["EXECUTED", "CANCELED", "PENDING"]
         status_input = input(
-            f"Введите статус, по которому необходимо выполнить фильтрацию.\n"
-            f"Доступные для фильтровки статусы: EXECUTED, CANCELED, PENDING:\n"
+            "Введите статус, по которому необходимо выполнить фильтрацию.\n"
+            "Доступные для фильтровки статусы: EXECUTED, CANCELED, PENDING:\n"
         )
 
         if status_input.upper() in status:
@@ -53,7 +53,7 @@ def main():
         else:
             print(f"Статус операции {status_input} недоступен.\n")
         continue
-# Запрос о необходимости сортировки(если да,то по возрастанию или убыванию.
+    # Запрос о необходимости сортировки(если да,то по возрастанию или убыванию.
     while True:
         date_operation_input = input("Отсортировать операции по дате? Да/Нет\n").lower().strip()
         new_dict_sort = []
@@ -91,7 +91,7 @@ def main():
 
     # age = [x for x in date_operation if x["date"]]
     # print(age)
-# Запрос у пользователя фильтрации по валюте.
+    # Запрос у пользователя фильтрации по валюте.
     while True:
         code_currency_rub = input("Выводить только рублевые транзакции? Да/Нет\n").lower().strip()
 
@@ -110,9 +110,9 @@ def main():
             print("Некорректный ввод")
         continue
 
-# Запрос у пользователя о фильтрации по определённому слову.
+    # Запрос у пользователя о фильтрации по определённому слову.
     while True:
-        # categoriy = ["Открытие вклада", "Перевод со счета на счет", "Перевод с карты на карту", "Перевод организации"]
+
         filter_descript = (
             input("Отфильтровать список транзакций по определенному слову в описании? Да/Нет\n").lower().strip()
         )
@@ -139,7 +139,7 @@ def main():
             print("Некорректный ввод")
         continue
 
-# Вывод конечной информации по фильтрации.
+    # Вывод конечной информации по фильтрации.
     while True:
         my_dict = {}
 
@@ -158,8 +158,11 @@ def main():
             my_dict["to"] = mask_account_card(i.get("to", ""))
 
             print(f"{my_dict["date"]} {my_dict.get("description")}")
-            print(f"{my_dict.get("from")}", my_dict.get("to"), sep=" -> ")
-            print(f"Сумма: {(my_dict["amount"])} {my_dict.get("code")}.\n")
+            if my_dict.get("from"):
+                print(f"{my_dict.get("from")} -> {my_dict.get("to")}")
+            else:
+                print(my_dict.get("to"))
+            print(f"Сумма: {round(float(my_dict["amount"]))} {my_dict.get("code")}.\n")
 
         break
 

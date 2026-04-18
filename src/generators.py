@@ -1,4 +1,4 @@
-from typing import Any
+from typing import Any, Dict, List
 
 transactions = [
     {
@@ -64,7 +64,7 @@ transactions = [
 ]
 
 
-def filter_by_currency(transaction_dict: list, currency_code: str = "USD") -> Any:
+def filter_by_currency(transaction_dict: List[Dict[str, Any]], currency_code: str = "USD") -> Any:
     """Функция принимает на вход список словарей, представляющих транзакции и
     возвращает итератор, который поочередно выдает транзакции,
     где валюта операции соответствует заданной"""
@@ -80,10 +80,10 @@ def filter_by_currency(transaction_dict: list, currency_code: str = "USD") -> An
             yield transaction
 
 
-usd_transactions = filter_by_currency(transactions, "USD")
-
-for _ in range(2):
-    print(next(usd_transactions))
+# usd_transactions = filter_by_currency(transactions, "USD")
+#
+# for _ in range(10):
+#     print(next(usd_transactions))
 
 
 def transaction_descriptions(transactions_descript: Any) -> Any:
@@ -96,8 +96,8 @@ def transaction_descriptions(transactions_descript: Any) -> Any:
 
 descriptions = transaction_descriptions(transactions)
 
-for _ in range(5):
-    print(next(descriptions))
+# for _ in range(5):
+#     print(next(descriptions))
 
 
 def card_number_generator(start: int, stop: int) -> Any:
@@ -111,5 +111,6 @@ def card_number_generator(start: int, stop: int) -> Any:
         yield formated_card_number
 
 
-for card_number in card_number_generator(1, 5):
-    print(card_number)
+#
+# for card_number in card_number_generator(1, 5):
+#     print(card_number)

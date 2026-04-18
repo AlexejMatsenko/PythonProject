@@ -16,7 +16,7 @@ def get_mask_card_number(card_number: Any) -> Any:
             logger.error("Номер состоит не только из цифр")
             raise ValueError("Номер должен состоять из цифр")
 
-        if len(card_number) > 16 or len(card_number) < 16:
+        if len(card_number) != 16:
             logger.error("Не соответствие количеству цифр номера карты")
             raise ValueError("Количество цифр карты должно быть 16")
 
@@ -42,7 +42,7 @@ def get_mask_account(account_number: Any) -> Any:
             logger.error("Счёт состоит не только из цифр")
             raise ValueError("Номер должен состоять из цифр")
 
-        if len(account_number) > 20 or len(account_number) < 20:
+        if len(account_number) != 20:
             logger.error("Не соответствие количеству цифр номера счёта")
             raise ValueError("Количество цифр карты должно быть 20")
         new_account_number.append(j)
