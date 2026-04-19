@@ -3,7 +3,7 @@ from unittest.mock import patch
 import pandas as pd
 import pytest
 
-from src.reading_files import read_csv_file, read_excel_file
+from src.utils import read_csv_file, read_excel_file
 
 
 @patch("pandas.read_csv")

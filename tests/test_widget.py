@@ -12,6 +12,7 @@ from src.widget import get_date, mask_account_card
         ("Счет 73654108430135874301", "Счет **4301"),
     ],
 )
+
 def test_mask_account_card(num_card_account, expected):
     assert mask_account_card(num_card_account) == expected
 
