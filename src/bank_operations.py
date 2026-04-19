@@ -2,8 +2,6 @@ import re
 from collections import Counter
 from typing import Dict, List
 
-from src.utils import read_csv_file, read_excel_file
-
 
 def process_bank_search(data: List[Dict[str, str]], search: str) -> list[Dict[str, str]] | None:
     """Функция принимает список словарей с данными о банковских операциях и строку поиска,
@@ -35,10 +33,10 @@ def process_bank_operations(data: list[dict], categories: list) -> dict:
     return dict(result)
 
 
-if __name__ == "__main__":
-
-    read_csv = read_csv_file("../data/transactions.csv")
-    read_excel = read_excel_file("../data/transactions_excel.xlsx")
+# if __name__ == "__main__":
+#
+#     read_csv = read_csv_file("../data/transactions.csv")
+#     read_excel = read_excel_file("../data/transactions_excel.xlsx")
 #     categoriy = ["Открытие вклада", "Перевод со счета на счет", "Перевод с карты на карту", "Перевод организации"]
 #     categoriy = ["апапп"]
 #     print(process_bank_search(read_excel, search="открытие"))

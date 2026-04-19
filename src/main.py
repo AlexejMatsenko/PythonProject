@@ -89,8 +89,6 @@ def main():
             print("Некорректный ввод")
         continue
 
-    # age = [x for x in date_operation if x["date"]]
-    # print(age)
     # Запрос у пользователя фильтрации по валюте.
     while True:
         code_currency_rub = input("Выводить только рублевые транзакции? Да/Нет\n").lower().strip()
@@ -149,7 +147,6 @@ def main():
                 my_dict["code"] = i["operationAmount"]["currency"]["code"]
             else:
                 my_dict["amount"] = i.get("amount")
-                # my_dict.update({"amount": my_dict[round(int("amount"))]})
                 my_dict["code"] = i.get("currency_code")
 
             my_dict["date"] = i["date"]

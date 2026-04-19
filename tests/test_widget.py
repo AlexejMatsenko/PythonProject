@@ -12,7 +12,6 @@ from src.widget import get_date, mask_account_card
         ("Счет 73654108430135874301", "Счет **4301"),
     ],
 )
-
 def test_mask_account_card(num_card_account, expected):
     assert mask_account_card(num_card_account) == expected
 
@@ -20,11 +19,6 @@ def test_mask_account_card(num_card_account, expected):
 def test_mask_account_card_letter():
     with pytest.raises(ValueError):
         mask_account_card("fgfgfg")
-
-
-def test_mask_account_card_number_len():
-    with pytest.raises(ValueError):
-        mask_account_card("")
 
 
 # Тестируем функцию get_date

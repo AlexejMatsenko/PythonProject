@@ -11,8 +11,7 @@ def filter_by_state(by_states: List[Dict[str, Any]], state: str = "EXECUTED") ->
     list_state_other = []
 
     for by_state in by_states:
-        # if not by_state["state"] or by_state["state"] == "":
-        #     raise KeyError("Необходимы данные по ключу")
+
         if by_state.get("state") == state:  # Сортировка по ключу по умолчанию
             list_state_executed.append(by_state)
         else:
@@ -26,7 +25,7 @@ def sort_by_date(operation: List[Dict[str, Any]], descending: bool = True) -> Li
     for operations in operation:
         if operations == [] or operations["date"] == "":
             raise TypeError("Дата отсутствует")
-        if not re.match(r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z", operations["date"], flags=0):
+        if not re.match(r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}.\d{6}", operations["date"], flags=0):
             raise ValueError("Некорректный формат даты")
 
     sorted_dates = sorted(operation, key=lambda x: x["date"], reverse=descending)

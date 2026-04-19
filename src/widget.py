@@ -23,7 +23,7 @@ def mask_account_card(num_card_account: str) -> str | None:
 def get_date(data: str) -> Any:
     """Принимает на вход строку с датой в смешанном формате, и возвращаем 'ДД.ММ.ГГГГ'"""
     data_new = data.split()
-    if not re.match(r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z", data):
+    if not re.match(r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}.\d{6}", data):
         raise ValueError("Некорректный формат даты")
 
     formated_date = re.sub(r"(\d{4})-(\d{2})-(\d{2})", r"\3.\2.\1", data_new[0])
@@ -32,5 +32,5 @@ def get_date(data: str) -> Any:
 
 
 #
-if __name__ == "__main__":
-    print(mask_account_card("Visa Platinum 1246377376343588"))
+# if __name__ == "__main__":
+#     print(mask_account_card("Visa Platinum 1246377376343588"))

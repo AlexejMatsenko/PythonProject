@@ -1,8 +1,8 @@
 from typing import Any
 
-from src.logging_config import setup_logging
+# from src.logging_config import setup_logging
 
-logger = setup_logging("masks")
+# logger = setup_logging("masks")
 
 
 def get_mask_card_number(card_number: Any) -> Any:
@@ -13,11 +13,11 @@ def get_mask_card_number(card_number: Any) -> Any:
     for i in card_number:
 
         if i.isalpha():
-            logger.error("Номер состоит не только из цифр")
+            # logger.error("Номер состоит не только из цифр")
             raise ValueError("Номер должен состоять из цифр")
 
         if len(card_number) != 16:
-            logger.error("Не соответствие количеству цифр номера карты")
+            # logger.error("Не соответствие количеству цифр номера карты")
             raise ValueError("Количество цифр карты должно быть 16")
 
         list_card_number.append(i)
@@ -28,7 +28,7 @@ def get_mask_card_number(card_number: Any) -> Any:
         elif len(list_card_number) == 14:
             list_card_number.append(" ")
             list_card_number[7:14] = ["*", "*", " ", "*", "*", "*", "*"]
-    logger.info("Успешное завершение маскировки")
+    # logger.info("Успешное завершение маскировки")
     return "".join(list_card_number)
 
 
@@ -39,15 +39,15 @@ def get_mask_account(account_number: Any) -> Any:
         raise ValueError("Ничего не указано")
     for j in account_number:
         if j.isalpha():
-            logger.error("Счёт состоит не только из цифр")
+            # logger.error("Счёт состоит не только из цифр")
             raise ValueError("Номер должен состоять из цифр")
 
         if len(account_number) != 20:
-            logger.error("Не соответствие количеству цифр номера счёта")
+            # logger.error("Не соответствие количеству цифр номера счёта")
             raise ValueError("Количество цифр карты должно быть 20")
         new_account_number.append(j)
     new_account_number[-6:-4] = ["*", "*"]
-    logger.info("Успешное завершение маскировки")
+    # logger.info("Успешное завершение маскировки")
     return "".join(new_account_number[-6:])
 
 

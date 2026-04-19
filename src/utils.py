@@ -2,7 +2,7 @@ import json
 
 import pandas as pd
 
-from src.logging_config import setup_logging
+# from src.logging_config import setup_logging
 
 # logger = setup_logging("utils")
 
@@ -56,7 +56,7 @@ def read_excel_file(file_excel: str) -> list[dict[str, str]]:
     return dict_list
 
 
-if __name__ == "__main__":
-    print(read_csv_file("../data/transactions.csv"))
-# print(read_excel_file("../data/transactions_excel.xlsx"))
-# print(get_transactions_from_json("../data/operations.json"))
+# if __name__ == "__main__":
+#     #     print(read_csv_file("../data/transactions.csv"))
+#     print(read_excel_file("../data/transactions_excel.xlsx"))
+# # print(get_transactions_from_json("../data/operations.json"))
