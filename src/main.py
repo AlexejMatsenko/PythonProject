@@ -106,7 +106,7 @@ def main():
             break
         elif code_currency_rub != "да" or code_currency_rub != "нет":
             print("Некорректный ввод")
-        continue
+            continue
 
     # Запрос у пользователя о фильтрации по определённому слову.
     while True:
