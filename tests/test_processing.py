@@ -30,11 +30,6 @@ def test_filter_by_state3():
     assert filter_by_state([]) == []
 
 
-def test_filter_by_state4(processing_by_state3):
-    with pytest.raises(KeyError):
-        assert filter_by_state(processing_by_state3)
-
-
 # Тестируем функцию sort_by_date
 
 

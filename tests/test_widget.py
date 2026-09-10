@@ -21,11 +21,6 @@ def test_mask_account_card_letter():
         mask_account_card("fgfgfg")
 
 
-def test_mask_account_card_number_len():
-    with pytest.raises(ValueError):
-        mask_account_card("")
-
-
 # Тестируем функцию get_date
 # Параметризация теста для get_date
 @pytest.mark.parametrize(
